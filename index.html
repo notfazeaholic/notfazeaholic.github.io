@@ -194,7 +194,17 @@
 <script>
 function fadeOutAndShow() {
   const btn = document.getElementById("power-button");
+  
   btn.classList.add("fade-out");
+
+  const audio = document.getElementById("home-audio");
+  if (audio) {
+    audio.volume = 0.2;
+    setTimeout(() => {
+    audio.play().catch(e => console.log("Audio playback blocked:", e));
+  }, 13000);
+  }
+
   setTimeout(() => {
     showContent();
   }, 300);
