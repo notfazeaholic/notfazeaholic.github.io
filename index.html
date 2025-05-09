@@ -1012,35 +1012,12 @@ video {
     observer.observe(typedText, { childList: true, characterData: true, subtree: true });
   }
 </script>
-
-
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const slider = document.getElementById("volume-slider");
-    const audio = document.getElementById("home-audio");
-    const typedText = document.getElementById("typed-text");
-
-    if (slider && audio && typedText) {
-      slider.style.opacity = 0; // Ensure it's hidden initially
-
-      const observer = new MutationObserver(() => {
-        if (typedText.textContent.trim() === 'notfazeaholic') {
-          slider.style.transition = "opacity 1s ease-in";
-          slider.style.opacity = 1;
-          observer.disconnect();
-        }
-      });
-
-      observer.observe(typedText, {
-        childList: true,
-        characterData: true,
-        subtree: true
-      });
-
-      slider.addEventListener("input", () => {
-        audio.volume = slider.value;
-      });
-    }
-  });
-</script>
-</body></html>
+document.addEventListener("DOMContentLoaded", () => {
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  const slider = document.getElementById("volume-slider");
+  if (isMobile && slider) {
+    slider.remove();
+  }
+});
+</script></body></html>
