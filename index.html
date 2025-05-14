@@ -293,12 +293,6 @@ function fadeOutAndShow() {
             if (index === commands.length) {
               setTimeout(() => {
                 var video = document.getElementById("home-audio");
-
-                function toggleMute() {
-                  video.play();
-                  video.volume = 1;
-                }
-                toggleMute();
                 writeLyrics(0, () => {
                   setTimeout(() => {
                     terminal.style.display = 'none';
