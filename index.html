@@ -269,7 +269,7 @@ function fadeOutAndShow() {
               additionalDelay = -10000;
             }
 
-            writeText(lyrics[index] + dots, (12000 + additionalDelay) / 8, () => {
+            writeText(lyrics[index] + dots, (12500 + additionalDelay) / 8, () => {
               writeLyrics(index + 1, callback);
             });
           }
@@ -296,7 +296,7 @@ function fadeOutAndShow() {
                 writeLyrics(0, () => {
                   setTimeout(() => {
                     terminal.style.display = 'none';
-                    $(document.getElementById("whole-site")).fadeIn(2000);
+                    $(document.getElementById("whole-site")).fadeIn(1500);
                     const textElement = document.getElementById('typed-text');
                     let currentIndex = 0;
                     const text = "notfazeaholic"
@@ -304,7 +304,7 @@ function fadeOutAndShow() {
                       if (currentIndex < text.length) {
                         textElement.textContent += text.charAt(currentIndex);
                         currentIndex++;
-                        setTimeout(typeText, 120);
+                        setTimeout(typeText, 70);
                       }
                     }
                     typeText();
