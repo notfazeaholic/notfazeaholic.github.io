@@ -549,7 +549,7 @@ body.ui-visible .box-container.right {
 /* Mobile: make the notfazeaholic text bigger in center */
 @media (pointer: coarse) {
   #main-text {
-    font-size: clamp(3rem, 12vw, 7rem) !important;
+    font-size: min(6rem, 14vw)!important;
   }
 }
 </style>
@@ -561,7 +561,7 @@ body.ui-visible .box-container.right {
     <defs>
       <linearGradient id="mobGrad" x1="0%" y1="0%" x2="100%" y2="0%">
         <stop offset="0%"   stop-color="#66d0ff" />
-        <stop offset="100%" stop-color="#66d0ff" stop-opacity="0" />
+        <stop offset="100%" stop-color="#66d0ff" stop-opacity="0.5" />
       </linearGradient>
     </defs>
     <g id="mob-rotor" transform-origin="50 50">
