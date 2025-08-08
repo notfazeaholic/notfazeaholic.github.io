@@ -516,38 +516,44 @@ body.ui-visible .box-container.right {
 #power-ring-fallback { opacity: 0.98; }
 #power-ring-fallback svg { overflow: visible; }
 #power-ring-fallback #ring-rotor { animation: ringFallbackRotate 4.8s linear infinite; }
+
+/* Mobile SVG orbit: unified single arc with bright head & soft trail */
+#power-ring-fallback { opacity: 0.99; }
+#power-ring-fallback svg { overflow: visible; }
+#power-ring-fallback #ring-rotor { animation: ringFallbackRotate 4.8s linear infinite; }
 </style>
 </head>
 <body>
 <img alt="Power Button" id="power-button" onclick="fadeOutAndShow();" src="./notfazeaholic_files/power_button.png"/ class="-ring">
 
+
 <span id="power-ring-fallback" aria-hidden="true">
-  <svg id="ring-svg" viewBox="0 0 100 100" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
+  <svg id="ring-svg" viewBox="0 0 100 100" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" shape-rendering="geometricPrecision">
     <defs>
-      <!-- Bright head gradient (slight white core) -->
+      <!-- Bright head: white core blended into cyan/blue -->
       <linearGradient id="gradHead" x1="0%" y1="0%" x2="100%" y2="0%">
         <stop offset="0%"   stop-color="#5cc7ff" stop-opacity="1"/>
         <stop offset="45%"  stop-color="#9bd6ff" stop-opacity="1"/>
         <stop offset="55%"  stop-color="#ffffff" stop-opacity="1"/>
-        <stop offset="100%" stop-color="#4fb7ff" stop-opacity="1"/>
+        <stop offset="100%" stop-color="#49b3ff" stop-opacity="1"/>
       </linearGradient>
-      <!-- Trail gradient fades out -->
+      <!-- Trail: fades from blue to transparent (no rgba in stop-color) -->
       <linearGradient id="gradTrail" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="0%"   stop-color="#52afff" stop-opacity="0.42"/>
-        <stop offset="60%"  stop-color="#52afff" stop-opacity="0.18"/>
+        <stop offset="0%"   stop-color="#52afff" stop-opacity="0.50"/>
+        <stop offset="60%"  stop-color="#52afff" stop-opacity="0.20"/>
         <stop offset="100%" stop-color="#52afff" stop-opacity="0"/>
       </linearGradient>
-      <!-- Soft outer glow -->
-      <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-        <feGaussianBlur stdDeviation="1.8" result="b"/>
+      <!-- Subtle glow -->
+      <filter id="glow" x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox">
+        <feGaussianBlur stdDeviation="1.7" result="b"/>
         <feMerge>
           <feMergeNode in="b"/>
           <feMergeNode in="SourceGraphic"/>
         </feMerge>
       </filter>
-      <!-- Slightly wider blur for the trail -->
-      <filter id="trailBlur" x="-50%" y="-50%" width="200%" height="200%">
-        <feGaussianBlur stdDeviation="2.6" result="b2"/>
+      <!-- Wider blur for the trail glow -->
+      <filter id="trailBlur" x="-80%" y="-80%" width="260%" height="260%" filterUnits="objectBoundingBox">
+        <feGaussianBlur stdDeviation="2.8" result="b2"/>
         <feMerge>
           <feMergeNode in="b2"/>
           <feMergeNode in="SourceGraphic"/>
@@ -555,29 +561,30 @@ body.ui-visible .box-container.right {
       </filter>
     </defs>
 
-    <!-- Single group that rotates -->
+    <!-- Use a single base circle path; rotate the whole group so gradients travel with it (objectBoundingBox units) -->
     <g id="ring-rotor" transform-origin="50 50">
-      <!-- Trail (longer, softer) -->
+      <!-- Trail (longer arc) -->
       <circle cx="50" cy="50" r="42"
               fill="none"
               stroke="url(#gradTrail)"
               stroke-width="5.2"
               stroke-linecap="round"
-              stroke-dasharray="120 145"
-              stroke-dashoffset="0"
+              stroke-dasharray="118 146"
+              stroke-dashoffset="10"
               filter="url(#trailBlur)"/>
-      <!-- Bright head (shorter, sharper) -->
+      <!-- Bright head (shorter cap) placed slightly ahead -->
       <circle cx="50" cy="50" r="42"
               fill="none"
               stroke="url(#gradHead)"
               stroke-width="5.2"
               stroke-linecap="round"
-              stroke-dasharray="44 219"
-              stroke-dashoffset="0"
+              stroke-dasharray="46 218"
+              stroke-dashoffset="-2"
               filter="url(#glow)"/>
     </g>
   </svg>
 </span>
+
 
 
 <span id="power-ring" aria-hidden="true"></span>
