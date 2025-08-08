@@ -566,6 +566,25 @@ body.ui-visible .box-container.right {
   }
 }
 
+
+@media (max-width: 768px), (pointer: coarse) {
+  .social-buttons {
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    z-index: 9999;
+  }
+  .social-buttons a {
+    width: auto !important;
+    height: auto !important;
+    padding: 10px 15px;
+  }
+}
 </style>
 </head>
 <body>
