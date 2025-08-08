@@ -586,6 +586,50 @@ body.ui-visible .box-container.right {
   }
 }
 </style>
+
+<style id="mobile-topbar-overrides">
+/* ==== Force social buttons into a single row across the top on small screens ==== */
+@media (max-width: 1024px) {
+  .box-container.right {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    transform: none !important;
+
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 8px !important;
+
+    padding: 8px 10px !important;
+    background: rgba(10,10,10,0.35) !important;
+    backdrop-filter: blur(10px) !important;
+
+    border-radius: 0 !important;   /* square edges (no rounded left side) */
+    border: 0 !important;
+    z-index: 10000 !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Keep each button on one line and avoid stacking */
+  .box-container.right .btn {
+    display: inline-flex !important;
+    flex: 0 0 auto !important;
+    white-space: nowrap !important;
+    margin: 0 !important;
+    min-height: 40px !important;
+  }
+
+  /* Optional: horizontal scroll instead of wrapping if the screen is ultra narrow */
+  .box-container.right {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: thin;
+  }
+}
+</style>
 </head>
 <body>
 <img alt="Power Button" id="power-button" onclick="fadeOutAndShow();" src="./notfazeaholic_files/power_button.png"/ class="-ring">
