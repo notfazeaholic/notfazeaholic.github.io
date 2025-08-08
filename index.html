@@ -354,6 +354,7 @@
   -webkit-mask: radial-gradient(circle, transparent 63.5%, #000 66.5%, transparent 69%);
           mask: radial-gradient(circle, transparent 63.5%, #000 66.5%, transparent 69%);
   /* Bright head leading, long trail behind */
+  background: transparent;
   background: conic-gradient(
     from 0deg,
     rgba(53,162,255,0.90) 0deg,
@@ -525,16 +526,16 @@ body.ui-visible .box-container.right {
     <defs>
       <!-- Bright head gradient (slight white core) -->
       <linearGradient id="gradHead" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="0%"   stop-color="#5cc7ff"/>
-        <stop offset="45%"  stop-color="#9bd6ff"/>
-        <stop offset="55%"  stop-color="#ffffff"/>
-        <stop offset="100%" stop-color="#4fb7ff"/>
+        <stop offset="0%"   stop-color="#5cc7ff" stop-opacity="1"/>
+        <stop offset="45%"  stop-color="#9bd6ff" stop-opacity="1"/>
+        <stop offset="55%"  stop-color="#ffffff" stop-opacity="1"/>
+        <stop offset="100%" stop-color="#4fb7ff" stop-opacity="1"/>
       </linearGradient>
       <!-- Trail gradient fades out -->
       <linearGradient id="gradTrail" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="0%"   stop-color="rgba(82, 175, 255, 0.42)"/>
-        <stop offset="60%"  stop-color="rgba(82, 175, 255, 0.18)"/>
-        <stop offset="100%" stop-color="rgba(82, 175, 255, 0.00)"/>
+        <stop offset="0%"   stop-color="#52afff" stop-opacity="0.42"/>
+        <stop offset="60%"  stop-color="#52afff" stop-opacity="0.18"/>
+        <stop offset="100%" stop-color="#52afff" stop-opacity="0"/>
       </linearGradient>
       <!-- Soft outer glow -->
       <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
