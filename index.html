@@ -587,9 +587,9 @@ body.ui-visible .box-container.right {
 }
 </style>
 
-<style id="mobile-topbar-overrides">
-/* ==== Force social buttons into a single row across the top on small screens ==== */
+<style id="mobile-topbar-centered">
 @media (max-width: 1024px) {
+  /* Solid full-width top bar */
   .box-container.right {
     position: fixed !important;
     top: 0 !important;
@@ -600,33 +600,40 @@ body.ui-visible .box-container.right {
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
-    justify-content: space-between !important;
-    gap: 8px !important;
+    justify-content: center !important; /* centered */
+    gap: clamp(4px, 1.2vw, 10px) !important;
 
-    padding: 8px 10px !important;
-    background: rgba(10,10,10,0.35) !important;
-    backdrop-filter: blur(10px) !important;
-
-    border-radius: 0 !important;   /* square edges (no rounded left side) */
+    padding: clamp(6px, 1.8vw, 12px) clamp(8px, 2vw, 16px) !important;
+    background: #111 !important;             /* solid background */
+    backdrop-filter: none !important;
+    border-radius: 0 !important;              /* square edges */
     border: 0 !important;
     z-index: 10000 !important;
     box-sizing: border-box !important;
+
+    overflow: hidden !important;              /* no scrollbars */
+    white-space: nowrap !important;           /* single row */
   }
 
-  /* Keep each button on one line and avoid stacking */
+  /* Let buttons shrink slightly to fit in-frame, and center them */
   .box-container.right .btn {
     display: inline-flex !important;
-    flex: 0 0 auto !important;
+    flex: 0 1 auto !important;                /* allow shrinking but no growth */
+    align-items: center !important;
+    justify-content: center !important;
     white-space: nowrap !important;
     margin: 0 !important;
-    min-height: 40px !important;
+    min-height: 36px !important;
+
+    /* Responsive text and padding so everything fits without wrapping */
+    font-size: clamp(12px, 1.8vw, 15px) !important;
+    line-height: 1.1 !important;
+    padding: clamp(6px, 1.3vw, 10px) clamp(10px, 1.8vw, 14px) !important;
   }
 
-  /* Optional: horizontal scroll instead of wrapping if the screen is ultra narrow */
-  .box-container.right {
-    overflow-x: auto !important;
-    -webkit-overflow-scrolling: touch !important;
-    scrollbar-width: thin;
+  /* If the bar overlaps page content, push the content down a bit */
+  body {
+    padding-top: max(48px, 7vh) !important;
   }
 }
 </style>
