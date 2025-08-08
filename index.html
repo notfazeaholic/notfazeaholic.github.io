@@ -552,6 +552,20 @@ body.ui-visible .box-container.right {
     font-size: min(6rem, 14vw)!important;
   }
 }
+
+/* Mobile: make the center 'notfazeaholic' text much larger */
+
+/* Mobile & narrow viewports: ensure the title always fits */
+@media (max-width: 900px), (pointer: coarse) {
+  #terminal-text {
+    font-size: clamp(2.2rem, 8.5vw, 5.5rem) !important;
+    max-width: 92vw;
+    white-space: nowrap;
+    letter-spacing: 0;
+    line-height: 0.95;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -818,7 +832,7 @@ function fadeOutAndShow() {
                       font-family: NoMercy;
                     }
                   </style>
-<h1 id="terminal-text" style="font-size: min(max(2.5rem, 8vw), 7.5vw);">
+<h1 id="terminal-text">
 <span class="terminal-container">
 <span id="typed-text"></span>
 <span class="cursor1"> </span>
