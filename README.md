@@ -1,1 +1,1 @@
-# notfazeaholic.online
+# notfazeaholic.github.io
